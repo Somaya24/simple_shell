@@ -10,7 +10,8 @@
 int main(int ac, char **av)
 {
 	char *input = NULL, **tokens = NULL;
-	int i, status = 0;
+	int status = 0, i;
+	(void) ac;
 
 	while(1)
 	{
@@ -19,21 +20,22 @@ int main(int ac, char **av)
 		{
 			if (isatty(0))
 				write(1, "\n", 1);
+			free(input), input = NULL;
 			return (status);
-			free(input);
 		}
 		/*function tokenizer */
 		tokens = _tokenize_input(input);
 		if (tokens == NULL)
 			continue;
-		/*for (i = 0; tokens[i]; i++)
-			printf("%s\n", tokens[i]);
-		
-		free(tokens[i]), tokens[i] = NULL;
-		free(tokens);*/
+		for (i = 0; tokens[i]; i++)
+		{
+			free(tokens[i]);
+			tokens[i] = NULL;
+		}
+		free(tokens);
 		
 		status = execute_input(tokens, av);
 	}
-	free(input);
+	free(input), input = NULL;
 	return (0);
 }

@@ -12,7 +12,7 @@ char *read_input(void)
 	num_input = getline(&buffer, &s_buffer, stdin);
 	if (num_input == -1)
 	{
-		free(buffer);
+		free(buffer), buffer = NULL;
 		return(NULL);
 	}
 	return (buffer);

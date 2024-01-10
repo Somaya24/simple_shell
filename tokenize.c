@@ -14,12 +14,12 @@ char **_tokenize_input(char *input)
 
 	if (!input)
 		return (NULL);
-	tmp = _strdup(input);
+	tmp = strdup(input);
 	token = strtok(tmp, " ");
 	if (token == NULL)
 	{
-		free(input);
-		free(tmp);
+		free(input), input = NULL;
+		free(tmp), tmp = NULL;
 		return (NULL);
 	}
 	while (token)
@@ -31,10 +31,10 @@ char **_tokenize_input(char *input)
 	tokens = malloc(sizeof(char*) * (j + 1));
 	if (!tokens)
 	{
-		free(input);
+		free(input), input = NULL;
 		return (NULL);
 	}
-	tmp = _strdup(input);
+	tmp = strdup(input);
 	token = strtok(tmp, " ");
 	while (token)
 	{
@@ -42,7 +42,7 @@ char **_tokenize_input(char *input)
 		token = strtok(NULL, " ");
 		i++;
 	}
-	free(input);
+	free(input), input = NULL;
 	tokens[i] = NULL;
 	return (tokens);
 }
