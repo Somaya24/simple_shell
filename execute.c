@@ -20,6 +20,11 @@ int execute_input(char **tokens, char **av)
 		perror("Error");
 		free(tokens);
 	}
+	if (!tokens)
+	{
+		free(full_command);
+		return (0):
+	}
 	child = fork();
 	if (child == -1)
 	{
