@@ -30,6 +30,7 @@ int main(int ac, char **av)
 			continue;
 
 		status = execute_input(tokens, av);
+		free_buffer(tokens);
 	}
 	return (0);
 }
