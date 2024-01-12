@@ -14,7 +14,7 @@ char **_tokenize_input(char *input)
 
 	if (!input)
 		return (NULL);
-	tmp = strdup(input);
+	tmp = _strdup(input);
 	token = strtok(tmp, " ");
 	if (token == NULL)
 	{
@@ -34,7 +34,7 @@ char **_tokenize_input(char *input)
 		free(input), input = NULL;
 		return (NULL);
 	}
-	tmp = strdup(input);
+	tmp = _strdup(input);
 	token = strtok(tmp, " ");
 	while (token)
 	{

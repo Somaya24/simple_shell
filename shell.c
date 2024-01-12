@@ -2,15 +2,16 @@
 
 /**
  *
- * main - simple shell
- *
- * Return 0 (success)
+ * main Entry point
+ * @ac: Argument count
+ * @av: argument vector
+ * Return status code
  */
 
 int main(int ac, char **av)
 {
 	char *input = NULL, **tokens = NULL;
-	int status = 0, i;
+	int status = 0;
 	(void) ac;
 
 	while(1)
@@ -25,17 +26,10 @@ int main(int ac, char **av)
 		}
 		/*function tokenizer */
 		tokens = _tokenize_input(input);
-		if (tokens == NULL)
+		if (!tokens)
 			continue;
-		for (i = 0; tokens[i]; i++)
-		{
-			free(tokens[i]);
-			tokens[i] = NULL;
-		}
-		free(tokens);
-		
+
 		status = execute_input(tokens, av);
 	}
-	free(input), input = NULL;
 	return (0);
 }

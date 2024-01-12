@@ -8,9 +8,18 @@
  */
 int execute_input(char **tokens, char **av)
 {
+	char *full_command;
+	
 	pid_t child;
 	int status;
 
+	(void) av;
+	full_command = _get_command(tokens[0]);
+	if (!full_command)
+	{
+		perror("Error");
+		free(tokens);
+	}
 	child = fork();
 	if (child == -1)
 	{
@@ -19,18 +28,18 @@ int execute_input(char **tokens, char **av)
 	}
 	if (child == 0)
 	{
-		if (execve(tokens[0], tokens, environ) == -1)
+		if (execve(full_command, tokens, environ) == -1)
 		{
-			perror(av[0]);
-			free(tokens);
-			exit(EXIT_FAILURE);
+			free(full_command), full_command = NULL;
+			free_buffer(tokens);
 		}
 		free(tokens), tokens = NULL;
 	}
 	else
 	{
 		wait(&status);
-		free(tokens), tokens = NULL;
+		free_buffer(tokens);
+		free(full_command), full_command = NULL;
 	}
 	return (WEXITSTATUS(status));
 }
