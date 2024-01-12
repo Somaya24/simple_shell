@@ -7,7 +7,7 @@
  */
 char **_tokenize_input(char *input)
 {
-	char * token;
+	char *token;
 	char *tmp = NULL;
 	char **tokens = NULL;
 	int j = 0, i = 0;
@@ -18,7 +18,7 @@ char **_tokenize_input(char *input)
 	token = strtok(tmp, " ");
 	if (token == NULL)
 	{
-		free_buffer(input);
+		free(input);
 		free(tmp), tmp = NULL;
 		return (NULL);
 	}
@@ -28,10 +28,10 @@ char **_tokenize_input(char *input)
 		token = strtok(NULL, " ");
 	}
 	free(tmp), tmp = NULL;
-	tokens = malloc(sizeof(char*) * (j + 1));
+	tokens = malloc(sizeof(char *) * (j + 1));
 	if (!tokens)
 	{
-		free_buffer(input);
+		free(input);
 		return (NULL);
 	}
 	tmp = my_strdup(input);
@@ -42,7 +42,7 @@ char **_tokenize_input(char *input)
 		token = strtok(NULL, " ");
 		i++;
 	}
-	free_buffer(input);
+	free(input);
 	tokens[i] = NULL;
 	return (tokens);
 }

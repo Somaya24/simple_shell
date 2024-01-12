@@ -1,8 +1,7 @@
 #include "shell.h"
 
 /**
- *
- * main Entry point
+ * main - loop getting input and executing it.
  * @ac: Argument count
  * @av: argument vector
  * Return status code
@@ -14,7 +13,7 @@ int main(int ac, char **av)
 	int status = 0;
 	(void) ac;
 
-	while(1)
+	while (1)
 	{
 		input = read_input();
 		if (input == NULL)/* EOF reached */

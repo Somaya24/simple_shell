@@ -1,5 +1,9 @@
 #include "shell.h"
 
+/**
+ * read_input - getting the user input
+ * return : the user input
+ */
 char *read_input(void)
 {
 	char *buffer = NULL;
@@ -13,7 +17,7 @@ char *read_input(void)
 	if (num_input == -1)
 	{
 		free(buffer), buffer = NULL;
-		return(NULL);
+		return (NULL);
 	}
 	return (buffer);
 }

@@ -4,7 +4,7 @@
  * execute_input - Execute the command
  * @tokens: the array of command
  * @av: command
- * Return : status
+ * Return : The exit status of the executed command
  */
 int execute_input(char **tokens, char **av)
 {
@@ -23,7 +23,7 @@ int execute_input(char **tokens, char **av)
 	if (!tokens)
 	{
 		free(full_command);
-		return (0):
+		return (0);
 	}
 	child = fork();
 	if (child == -1)
@@ -38,7 +38,7 @@ int execute_input(char **tokens, char **av)
 			free(full_command), full_command = NULL;
 			free_buffer(tokens);
 		}
-		free(tokens), tokens = NULL;
+		free_buffer(tokens);
 	}
 	else
 	{

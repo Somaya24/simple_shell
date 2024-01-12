@@ -22,7 +22,7 @@ void free_buffer(char **buffer);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_getenv(const char *var);
 
-char *_strdup(char* str);
+char *my_strdup(char *str);
 int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, const char *src);
